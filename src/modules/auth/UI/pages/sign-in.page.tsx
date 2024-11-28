@@ -25,7 +25,15 @@ const SignIn = () => {
             control={control}
             name="email"
             label="Email"
+
             placeholder="Email"
+						variants={{
+							text: "primary",
+							background: "primary",
+							border: "primary",
+							padding: "sm",
+							justify: "center"
+						}}
           />
           <FormInput<SignInType>
             control={control}
@@ -33,8 +41,24 @@ const SignIn = () => {
             label="Password"
             placeholder="Password"
             type="password"
+						classNameLabel="text-primary text-sm font-medium bg-"
+						variants={{
+							text: "primary",
+							background: "primary",
+							border: "primary",
+							padding: "sm",
+							justify: "center"
+						}}
           />
-          <FormButton type="submit" label="Sign In" />
+          <FormButton type="submit" label="Sign In" className="bg-slate-900"  variants={
+						{
+							text: "primary",
+							background: "primary",
+							border: "primary",
+							padding: "sm",
+							justify: "center"
+						}
+					}/>
         </>
       )}
     </FormCustom>

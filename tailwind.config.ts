@@ -9,7 +9,14 @@ export default {
 	],
 	theme: {
 		extend: {
-			colors: {},
+			colors: {
+				primary: "#FF6600",
+				secondary: "#F79950",
+				tertiary: "#0f172a",
+				primaryContrast: "#fd7c20",
+				secondaryContrast: "#0f172a",
+				tertiaryContrast: "#D45300",
+			},
 		},
 	},
 	plugins: [],
