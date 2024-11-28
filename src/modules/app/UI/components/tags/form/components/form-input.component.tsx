@@ -1,24 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
 import type { Control, FieldValues, Path } from "react-hook-form";
 
 import { Controller } from "react-hook-form";
 
 
 interface Props<T extends FieldValues> {
-  errors?: any;
   name: Path<T>;
   label: string;
   type?: string;
   placeholder?: string;
   control: Control<T>;
-  classNameInput?: string;
-  classNameLabel?: string;
-
 }
 
-const FormInput  = <T extends FieldValues>({
+
+const InputForm = <T extends FieldValues>({
   name,
   type = "text",
   placeholder = "",
@@ -26,8 +21,6 @@ const FormInput  = <T extends FieldValues>({
   label,
 
 }: Props<T>): JSX.Element => {
-
-
 
 
   return (
@@ -49,7 +42,7 @@ const FormInput  = <T extends FieldValues>({
               type={type}
               onBlur={field.onBlur}
             />
-            <p className="mt-1 h-4 text-sm text-red-500">{error ? error.message : " "}</p>
+            <p className="pt-1 h-4 text-sm text-red-500">{error ? error.message : " "}</p>
           </>
         )}
       />
@@ -57,4 +50,4 @@ const FormInput  = <T extends FieldValues>({
   );
 };
 
-export default FormInput;
+export default InputForm;
