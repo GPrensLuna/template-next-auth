@@ -1,0 +1,91 @@
+{
+  "sorted_middleware": [],
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/_edaf22._.js",
+        "server/edge/chunks/c1962_@auth_core_9221fb._.js",
+        "server/edge/chunks/a49ca_jose_dist_browser_4abf58._.js",
+        "server/edge/chunks/node_modules__pnpm_1f31bf._.js",
+        "server/edge/chunks/[root of the server]__e95a42._.js",
+        "server/edge/chunks/edge-wrapper_63e461.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/((?!.*\\..*|_next).*){(\\\\.json)}?",
+          "originalSource": "/((?!.*\\..*|_next).*)"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/(/?index|/?index\\\\.json)?",
+          "originalSource": "/"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/(api|trpc)(.*){(\\\\.json)}?",
+          "originalSource": "/(api|trpc)(.*)"
+        }
+      ],
+      "wasm": [],
+      "assets": [
+        {
+          "name": "server/edge/chunks/_edaf22._.js.map",
+          "filePath": "server/edge/chunks/_edaf22._.js.map"
+        },
+        {
+          "name": "server/edge/chunks/_edaf22._.js",
+          "filePath": "server/edge/chunks/_edaf22._.js"
+        },
+        {
+          "name": "server/edge/chunks/c1962_@auth_core_9221fb._.js.map",
+          "filePath": "server/edge/chunks/c1962_@auth_core_9221fb._.js.map"
+        },
+        {
+          "name": "server/edge/chunks/c1962_@auth_core_9221fb._.js",
+          "filePath": "server/edge/chunks/c1962_@auth_core_9221fb._.js"
+        },
+        {
+          "name": "server/edge/chunks/a49ca_jose_dist_browser_4abf58._.js.map",
+          "filePath": "server/edge/chunks/a49ca_jose_dist_browser_4abf58._.js.map"
+        },
+        {
+          "name": "server/edge/chunks/a49ca_jose_dist_browser_4abf58._.js",
+          "filePath": "server/edge/chunks/a49ca_jose_dist_browser_4abf58._.js"
+        },
+        {
+          "name": "server/edge/chunks/node_modules__pnpm_1f31bf._.js.map",
+          "filePath": "server/edge/chunks/node_modules__pnpm_1f31bf._.js.map"
+        },
+        {
+          "name": "server/edge/chunks/node_modules__pnpm_1f31bf._.js",
+          "filePath": "server/edge/chunks/node_modules__pnpm_1f31bf._.js"
+        },
+        {
+          "name": "server/edge/chunks/[root of the server]__e95a42._.js.map",
+          "filePath": "server/edge/chunks/[root of the server]__e95a42._.js.map"
+        },
+        {
+          "name": "server/edge/chunks/[root of the server]__e95a42._.js",
+          "filePath": "server/edge/chunks/[root of the server]__e95a42._.js"
+        },
+        {
+          "name": "server/edge/chunks/edge-wrapper_63e461.js.map",
+          "filePath": "server/edge/chunks/edge-wrapper_63e461.js.map"
+        },
+        {
+          "name": "server/edge/chunks/edge-wrapper_63e461.js",
+          "filePath": "server/edge/chunks/edge-wrapper_63e461.js"
+        }
+      ],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "7/wa11Pv7zvLckQ/4OzVUINdnHqRNAUiadnSm85aoT8=",
+        "__NEXT_PREVIEW_MODE_ID": "3ec3767d6ee0d0cb11372c48f62f00b4",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "1d78a95e8d7de6b51c15176292d292133bb8a49483fde54ef145e8ce11d2c660",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "e9b7fece4eccd3b787e407c388b7d66112a50ba89dd8ea5bafe33770eb27864d"
+      }
+    }
+  },
+  "instrumentation": null,
+  "functions": {}
+}

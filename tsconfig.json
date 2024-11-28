@@ -1,27 +1,110 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
+    // Activa siempre el modo estricto (equivalente a `use strict` en JavaScript).
+    "alwaysStrict": true,
+    // Asegura que los tipos opcionales sean tratados de manera exacta (sin asumir que son `undefined`).
+    "exactOptionalPropertyTypes": true,
+    // Impide que haya "fallthrough" (caídas) en los `switch` sin un `break` o `return`.
+    "noFallthroughCasesInSwitch": true,
+    // Fuerza la declaración explícita de los tipos de las variables, evitando el tipo `any` implícito.
+    "noImplicitAny": true,
+    // Requiere que todos los métodos que sobrescriben un método de una clase base tengan la palabra clave `override`.
+    "noImplicitOverride": true,
+    // Requiere que todas las funciones tengan un valor de retorno explícito.
+    "noImplicitReturns": true,
+    // Impide que el valor de `this` se asuma de manera implícita (debe ser explícito).
+    "noImplicitThis": true,
+    // Desactiva variables locales no usadas.
+    "noUnusedLocals": true,
+    // Desactiva parámetros no usados en las funciones.
+    "noUnusedParameters": true,
+    // Activa todas las verificaciones estrictas en TypeScript.
     "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    // Asegura que los tipos de funciones de llamada (como `bind`, `call`, y `apply`) sean estrictos.
+    "strictBindCallApply": true,
+    // Establece que los tipos de funciones sean estrictos (por ejemplo, comparación de tipos en función).
+    "strictFunctionTypes": true,
+    // Establece que `null` y `undefined` son diferentes de cualquier otro tipo (comprobación estricta).
+    "strictNullChecks": true,
+    // Requiere que todas las propiedades de clase sean inicializadas en el constructor o estén explícitamente declaradas como `undefined`.
+    "strictPropertyInitialization": true,
+    // Utiliza `unknown` para las variables capturadas en un bloque `catch`, en lugar de `any`.
+    "useUnknownInCatchVariables": true,
+    // Permite JSX con la configuración `react` (requiere `react` como dependencia).
     "jsx": "preserve",
+    // Activa la verificación de los módulos `esnext` en tiempo de compilación.
+    "module": "ESNext",
+    // Usa la resolución de módulos de Node.js.
+    "moduleResolution": "node",
+    // Configura la versión de ECMAScript a `ESNext`.
+    "target": "ESNext",
+    // Habilita la generación de archivos `.d.ts` (declaraciones de tipos).
+    "declaration": true,
+    // Genera un archivo `.map` para facilitar la depuración.
+    "sourceMap": true,
+    // Permite la importación de módulos ES6 por defecto.
+    "esModuleInterop": true,
+    // Permite la resolución de módulos JSON.
+    "resolveJsonModule": true,
+    // Activa la generación de metadatos para decoradores (útil con TypeORM o similar).
+    "emitDecoratorMetadata": true,
+    // Permite el uso de decoradores (requiere que `experimentalDecorators` esté activado).
+    "experimentalDecorators": true,
+    // Omite la comprobación de tipos de las dependencias de las librerías.
+    "skipLibCheck": true,
+    // Especifica las ubicaciones de los tipos de definición.
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types/**/*.d.ts"
+    ],
+    // Especifica las bibliotecas de tipos a incluir (en este caso, ES2021 y DOM).
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    // Activa la compilación incremental para mejorar el rendimiento en compilaciones posteriores.
     "incremental": true,
+    // Evita la generación de archivos si hay errores de compilación.
+    "noEmitOnError": true,
+    // Permite la importación de módulos con `default` aunque no tenga un `export default`.
+    "allowSyntheticDefaultImports": true,
+    // Fuerza el uso consistente de mayúsculas y minúsculas en los nombres de archivos.
+    "forceConsistentCasingInFileNames": true,
+    // Permite usar archivos `.js` en un proyecto de TypeScript.
+    "allowJs": true,
+    // Usa las propiedades de clase estándar de ES6.
+    "useDefineForClassFields": true,
+    // Desactiva el límite de tamaño de los archivos de salida en compilación.
+    "disableSizeLimit": true,
+    // Elimina los comentarios del código de salida.
+    "removeComments": true,
+    "noEmit": true,
+    "isolatedModules": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  // Archivos y carpetas a incluir en la compilación.
+  "include": [
+    "next-env.d.ts",
+    "package.json", // Soporta archivos .tsx de React
+    "prettier.config.js", // Archivos específicos de Next.js (auto-generados)
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  // Archivos y carpetas a excluir de la compilación.
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".next", // Excluye la carpeta de Next.js
+    "package.json"
+  ]
 }

@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/src/auth.config.ts"],"sourcesContent":["import type { NextAuthConfig } from \"next-auth\";\nimport GitHub from \"next-auth/providers/github\";\n\nexport default { providers: [GitHub] } satisfies NextAuthConfig;\n"],"names":[],"mappings":";;;AACA;AAAA;;uCAEe;IAAE,WAAW;QAAC,iNAAA,CAAA,UAAM;KAAC;AAAC"}},
+    {"offset": {"line": 34, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/src/auth.ts"],"sourcesContent":["import NextAuth from \"next-auth\";\nimport authConfig from \"./auth.config\";\n\nexport const { auth, handlers, signIn, signOut }: any = NextAuth({\n\tsession: { strategy: \"jwt\" },\n\t...authConfig,\n});\n"],"names":[],"mappings":";;;;;;AAAA;AACA;AADA;;;AAGO,MAAM,EAAE,IAAI,EAAE,QAAQ,EAAE,MAAM,EAAE,OAAO,EAAE,GAAQ,CAAA,GAAA,0WAAA,CAAA,UAAQ,AAAD,EAAE;IAChE,SAAS;QAAE,UAAU;IAAM;IAC3B,GAAG,qHAAA,CAAA,UAAU;AACd"}},
+    {"offset": {"line": 57, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 63, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/src/middleware.ts"],"sourcesContent":["import NextAuth from \"next-auth\";\nimport { NextRequest } from \"next/server\";\nimport authConfig from \"./auth.config\";\n\n// Use only one of the two middleware options below\n// 1. Use middleware directly\n// export const { auth: middleware } = NextAuth(authConfig)\n\n// 2. Wrapped middleware option\nconst { auth } = NextAuth(authConfig);\nexport default auth(async function middleware(req: NextRequest) {\n\t// Your custom middleware logic goes here\n});\n"],"names":[],"mappings":";;;AAAA;AAEA;;;AAEA,mDAAmD;AACnD,6BAA6B;AAC7B,2DAA2D;AAE3D,+BAA+B;AAC/B,MAAM,EAAE,IAAI,EAAE,GAAG,CAAA,GAAA,0WAAA,CAAA,UAAQ,AAAD,EAAE,qHAAA,CAAA,UAAU;uCACrB,KAAK,eAAe,WAAW,GAAgB;AAC7D,yCAAyC;AAC1C"}},
+    {"offset": {"line": 78, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
