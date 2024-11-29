@@ -28,20 +28,18 @@ const Nav = (): ReactNode => {
 	return (
 		<nav className="flex h-16 w-full px-10">
 			<ul className="flex h-full w-[80%] justify-around">
-				<li className="flex h-full items-center px-4">
-					<ButtonContainer className="flex h-full items-center">
-						{(isOpen) => (
-							<>
-								<Link href="/">Home</Link>
-								{isOpen && <MenuListItems options={options} />}
-							</>
-						)}
-					</ButtonContainer>
-				</li>
-				<li>
-					<Link href="/auth">auth</Link>
-				</li>
-				<li>Contact</li>
+				{options.map((option) => (
+					<li key={option.id} className="flex h-full items-center px-4">
+						<ButtonContainer className="flex h-full items-center">
+							{(isOpen) => (
+								<>
+									<Link href={option.href || "#"}>{option.label}</Link>
+									{isOpen && <MenuListItems options={options} />}
+								</>
+							)}
+						</ButtonContainer>
+					</li>
+				))}
 			</ul>
 			<section className="flex h-full w-[20%]">
 				<ButtonToggle />
