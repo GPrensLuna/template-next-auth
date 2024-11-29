@@ -1,31 +1,31 @@
 import type { NextAuthConfig } from "next-auth";
 
+import CredentialsProvider from "next-auth/providers/credentials";
+
+interface User {
+	name: string;
+	email: string;
+}
+
 export default {
 	providers: [
-		Credentials({
-			// You can specify which fields should be submitted, by adding keys to the `credentials` object.
-			// e.g. domain, username, password, 2FA token, etc.
+		CredentialsProvider({
 			credentials: {
 				email: {},
 				password: {},
 			},
-			authorize: async (credentials): Promise<any> => {
-				let user = null;
+			authorize: async (
+				credentials: Partial<Record<"email" | "password", unknown>>,
+			): Promise<User | null> => {
+				const email = credentials.email as string;
+				const password = credentials.password as string;
 
-				console.log(credentials);
-				// // logic to salt and hash password
-				// const pwHash = saltAndHashPassword(credentials.password);
-
-				// // logic to verify if the user exists
-				// user = await getUserFromDb(credentials.email, pwHash);
-
-				if (!user) {
-					// No user found, so this is their first attempt to login
-					// Optionally, this is also the place you could do a user registration
+				if (!email || !password) {
 					throw new Error("Invalid credentials.");
 				}
 
-				// return user object with their profile data
+				const user = { name: "John Doe", email: "john.doe@example.com" };
+
 				return user;
 			},
 		}),

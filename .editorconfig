@@ -2,7 +2,7 @@
 root = true
 
 [*]
-max_line_length =90
+max_line_length =100
 # General settings
 indent_size = 2
 indent_style = tab       # Usa espacios en lugar de tabuladores

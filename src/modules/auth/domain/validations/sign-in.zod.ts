@@ -6,7 +6,10 @@ export const signInSchema = z.object({
 	// Campo de correo electrónico que debe ser una cadena con formato de correo electrónico
 	email: z.string().email(),
 	// Campo de contraseña que debe ser una cadena
-	password: z.string(),
+	password: z
+		.string()
+		.min(8, "Password must be at least 8 characters")
+		.max(20, "Password must be at most 20 characters"),
 });
 
 // Define un tipo TypeScript basado en el esquema de validación
@@ -19,3 +22,10 @@ export const SignInInitValue: SignInType = {
 	// Valor inicial de la contraseña vacía
 	password: "",
 };
+
+export const SignInData = [
+	{ name: "email", label: "Email", type: "text", placeholder: "Email" },
+	{ name: "password", label: "Password", type: "password", placeholder: "Password" },
+];
+
+export type SignInDataType = typeof SignInData;

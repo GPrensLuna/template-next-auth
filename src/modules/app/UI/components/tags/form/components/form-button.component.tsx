@@ -1,7 +1,10 @@
 "use client";
-import variants from '@/modules/app/UI/styles/variants.styles';
+import type { FC, MouseEvent, ReactNode } from "react";
+
 import classNames from "classnames";
-import { FC, memo, MouseEvent, ReactNode, useCallback } from "react";
+import { memo, useCallback } from "react";
+
+import variants from "@/modules/app/UI/styles/variants.styles";
 
 interface Props {
 	label: string;
@@ -13,8 +16,10 @@ interface Props {
 	loading?: boolean;
 	variants?: {
 		text?: keyof typeof variants.text;
+		fontSize?: keyof typeof variants.fontSize;
 		background?: keyof typeof variants.background;
 		border?: keyof typeof variants.border;
+		rounded?: keyof typeof variants.rounded;
 		padding?: keyof typeof variants.padding;
 		justify?: keyof typeof variants.justify;
 	};
@@ -38,24 +43,26 @@ const FormButton: FC<Props> = ({
 				onClick(event);
 			}
 		},
-		[onClick]
+		[onClick],
 	);
 
 	return (
 		<button
+			aria-busy={isBusy}
 			className={classNames(
 				className,
 				variants.text[variantOptions.text || "default"],
+				variants.fontSize[variantOptions.fontSize || "default"],
 				variants.background[variantOptions.background || "default"],
 				variants.border[variantOptions.border || "default"],
+				variants.rounded[variantOptions.rounded || "default"],
 				variants.padding[variantOptions.padding || "default"],
 				variants.justify[variantOptions.justify || "default"],
-				{ "is-loading": isBusy }
+				{ "is-loading": isBusy },
 			)}
-			onClick={handleClick}
-			type={type}
 			disabled={disabled || isBusy}
-			aria-busy={isBusy}
+			type={type === "submit" ? "submit" : "button"}
+			onClick={handleClick}
 		>
 			{isBusy ? "Loading..." : label}
 			{children}

@@ -1,68 +1,106 @@
 "use client";
 
+import type { ReactNode } from "react";
+import type { SignInType } from "../../domain/validations/sign-in.zod";
+
+import { memo, useState } from "react";
+
+import { SignInData, SignInInitValue, signInSchema } from "../../domain/validations/sign-in.zod";
+
 import FormButton from "@/modules/app/UI/components/tags/form/components/form-button.component";
 import FormInput from "@/modules/app/UI/components/tags/form/components/form-input.component";
 import FormCustom from "@/modules/app/UI/components/tags/form/form-custom.component";
-import { memo } from "react";
-import type { SignInType } from "../../domain/validations/sign-in.zod";
-import { SignInInitValue, signInSchema } from "../../domain/validations/sign-in.zod";
+import TitleCustom from "@/modules/app/UI/components/tags/title-custom.component";
 
-const SignIn = () => {
-  const onSubmit = (data: SignInType) => {
-    console.log("data: ", data);
-  };
+const SignIn = (): ReactNode => {
+	const [responseMessage, setResponseMessage] = useState<string | null>(null);
 
-  return (
-    <FormCustom<SignInType>
-      onSubmit={onSubmit}
-      defaultValues={SignInInitValue}
-      schema={signInSchema}
-      mode="onSubmit"
-    >
-      {({ control }) => (
-        <>
-          <FormInput<SignInType>
-            control={control}
-            name="email"
-            label="Email"
+	const onSubmit = async (data: SignInType): Promise<void> => {
+		try {
+			console.log(data);
+			await new Promise((resolve) => setTimeout(resolve, 1000));
+			setResponseMessage("Inicio de sesión exitoso");
+		} catch {
+			setResponseMessage("Error al iniciar sesión");
+		}
+	};
 
-            placeholder="Email"
+	return (
+		<FormCustom<SignInType>
+			className="mx-auto grid w-full min-w-80 max-w-lg grid-cols-1 gap-2 bg-[#F79950] p-4 transition-all duration-300 ease-in-out"
+			defaultValues={SignInInitValue}
+			mode="onBlur"
+			schema={signInSchema}
+			variants={{
+				border: "primary",
+				background: "tertiary",
+				padding: "lg",
+				rounded: "xl",
+				justify: "center",
+			}}
+			onSubmit={onSubmit}
+		>
+			{({ control }) => (
+				<>
+					<TitleCustom
+						className="w-full text-center uppercase transition-all duration-300 ease-in-out"
+						tag="h1"
 						variants={{
 							text: "primary",
-							background: "primary",
-							border: "primary",
+							rounded: "xl",
 							padding: "sm",
-							justify: "center"
+							fontSize: "xl",
+							justify: "center",
 						}}
-          />
-          <FormInput<SignInType>
-            control={control}
-            name="password"
-            label="Password"
-            placeholder="Password"
-            type="password"
-						classNameLabel="text-primary text-sm font-medium bg-"
+					>
+						Sign In
+					</TitleCustom>
+
+					{SignInData.map((data) => (
+						<FormInput<SignInType>
+							key={data.name}
+							className="w-full min-w-60 transition-all duration-300 ease-in-out"
+							control={control}
+							label={data.label}
+							name={data.name as keyof SignInType}
+							placeholder={data.placeholder}
+							type={data.type}
+							variantsInput={{
+								text: "primary",
+								border: "primary",
+								rounded: "xl",
+								padding: "sm",
+								justify: "center",
+							}}
+							variantsLabel={{
+								text: "primary",
+								fontSize: "lg",
+							}}
+						/>
+					))}
+
+					<FormButton
+						className="mt-4 w-full bg-slate-900 uppercase transition-all duration-300 ease-in-out"
+						label="send"
+						type="submit"
 						variants={{
 							text: "primary",
-							background: "primary",
+							rounded: "xl",
 							border: "primary",
 							padding: "sm",
-							justify: "center"
+							justify: "center",
 						}}
-          />
-          <FormButton type="submit" label="Sign In" className="bg-slate-900"  variants={
-						{
-							text: "primary",
-							background: "primary",
-							border: "primary",
-							padding: "sm",
-							justify: "center"
-						}
-					}/>
-        </>
-      )}
-    </FormCustom>
-  );
+					/>
+
+					{responseMessage && (
+						<p className="mt-4 text-center transition-all duration-300 ease-in-out">
+							{responseMessage}
+						</p>
+					)}
+				</>
+			)}
+		</FormCustom>
+	);
 };
 
 export default memo(SignIn);

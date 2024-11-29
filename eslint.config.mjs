@@ -1,9 +1,14 @@
 import { fixupPluginRules } from "@eslint/compat";
 import eslintPluginNext from "@next/eslint-plugin-next";
 import vercelStyleGuideNext from "@vercel/style-guide/eslint/next";
+import vercelStyleGuideReact from "@vercel/style-guide/eslint/rules/react";
 import vercelStyleGuideTypescript from "@vercel/style-guide/eslint/typescript";
 import eslintPluginImport from "eslint-plugin-import";
+import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+import eslintPluginReact from "eslint-plugin-react";
+import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
+import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import eslintPluginUnusedImport from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -126,11 +131,11 @@ export default [
 				"@typescript-eslint/no-unused-vars": "warn", // Evita el uso de variables no utilizadas
 				"@typescript-eslint/no-non-null-assertion": "off", // Evita el uso de `!` en declaraciones de variables
 				"@typescript-eslint/no-shadow": "off", // Evita el uso de `var` en declaraciones de variables
-				"@typescript-eslint/explicit-function-return-type": "off", // Desactivar la regla para evitar el mensaje de error
+				"@typescript-eslint/explicit-function-return-type": "warn", // Evita el uso de `any` en declaraciones de funciones
 				"@typescript-eslint/require-await": "off", // Evita el uso de promesas sin await en funciones
 				"@typescript-eslint/no-floating-promises": "off", // Evita el uso de promesas sin await en funciones
 				"@typescript-eslint/no-confusing-void-expression": "off", // Evita el uso de `void` en declaraciones de variables
-				"@typescript-eslint/explicit-module-boundary-types": "off", // Requerir declaraciones de tipos de retorno en las funciones
+				"@typescript-eslint/explicit-module-boundary-types": "error", // Requerir declaraciones de tipos de retorno en las funciones
 				"@typescript-eslint/no-explicit-any": "error", // Requerir declaraciones de tipos de retorno en las funciones
 				"@typescript-eslint/no-inferrable-types": "error", // Requerir declaraciones de tipos de retorno en las funciones
 				"@typescript-eslint/explicit-function-return-type": "error", // Requerir declaraciones de tipos de retorno en las funciones
@@ -172,11 +177,11 @@ export default [
 					{
 						semi: true,
 						parser: "typescript",
-						useTabs: true, // Cambiado a false para usar espacios
+						useTabs: true,
 						tabWidth: 2,
 						proseWrap: "preserve",
 						endOfLine: "lf",
-						printWidth: 90,
+						printWidth: 100,
 						quoteProps: "as-needed",
 						rangeStart: 0,
 						singleQuote: false,
@@ -248,13 +253,7 @@ export default [
 								},
 							},
 						],
-						importOrder: [
-							"^react",
-							"^next",
-							"<THIRD_PARTY_MODULES>",
-							"^@/(.*)$",
-							"^[./]",
-						],
+						importOrder: ["^react", "^next", "<THIRD_PARTY_MODULES>", "^@/(.*)$", "^[./]"],
 						importOrderSeparation: true,
 						importOrderSortSpecifiers: true,
 						importOrderGroupNamespaceSpecifiers: true,
