@@ -29,7 +29,7 @@ export const ButtonToggle = (): ReactNode => {
 	];
 
 	return (
-		<ButtonContainer>
+		<ButtonContainer className="flex h-full items-center">
 			{(isOpen): ReactNode => (
 				<>
 					<button type="button">

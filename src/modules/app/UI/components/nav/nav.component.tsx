@@ -26,15 +26,15 @@ const Nav = (): ReactNode => {
 	];
 
 	return (
-		<nav className="flex h-16 w-full items-center px-10">
-			<ul className="flex w-[80%] justify-around">
-				<li>
-					<ButtonContainer>
+		<nav className="flex h-16 w-full px-10">
+			<ul className="flex h-full w-[80%] justify-around">
+				<li className="flex h-full items-center px-4">
+					<ButtonContainer className="flex h-full items-center">
 						{(isOpen) => (
-							<div>
+							<>
 								<Link href="/">Home</Link>
 								{isOpen && <MenuListItems options={options} />}
-							</div>
+							</>
 						)}
 					</ButtonContainer>
 				</li>
@@ -43,7 +43,7 @@ const Nav = (): ReactNode => {
 				</li>
 				<li>Contact</li>
 			</ul>
-			<section className="flex h-auto w-[20%] items-center justify-center">
+			<section className="flex h-full w-[20%]">
 				<ButtonToggle />
 			</section>
 		</nav>

@@ -23,13 +23,16 @@ const MenuListItem: FC<{
 		id: string;
 		label: string;
 		href?: string;
+
 		onClick?: MouseEventHandler<HTMLAnchorElement> | (() => void);
 	};
 }> = memo(
 	({ subNav }): ReactNode => (
 		<TitleCustom
 			key={subNav.id}
-			className="block h-full w-full rounded-md hover:bg-gray-300 dark:hover:text-black"
+			className={classNames(
+				"block h-full w-full rounded-md hover:bg-gray-300 dark:hover:text-black",
+			)}
 			tag="span"
 		>
 			<Link
@@ -56,6 +59,15 @@ export const MenuListItems: FC<Props> = ({ options, className }): ReactNode => (
 			"w-4rem absolute left-0 flex min-h-11 min-w-11 transform flex-col rounded-xl p-2 opacity-100 shadow-lg transition-all duration-300 ease-in-out",
 		)}
 		role="menu"
+		variants={{
+			text: "primary",
+			fontSize: "lg",
+			fontStyle: "bold",
+			position: "bottomLeft",
+			background: "tertiary",
+			border: "primary",
+			rounded: "xl",
+		}}
 	>
 		{options
 			.sort((a, b) => a.id.localeCompare(b.id))

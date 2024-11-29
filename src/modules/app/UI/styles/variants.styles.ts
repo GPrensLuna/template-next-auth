@@ -20,6 +20,15 @@ export const variants = {
 		tertiary: `bg-tertiaryCustom   dark:bg-tertiaryContrastCustom`,
 		default: `bg-transparent dark:bg-transparent`,
 	},
+	position: {
+		topLeft: `top-full left-0`,
+		topCenter: `top-full left-1/2 transform -translate-x-1/2`,
+		topRight: `top-full right-0`,
+		bottomLeft: `top-12 left-0 pt-2`,
+		bottomCenter: `top-12 left-1/2 transform -translate-x-1/2 pt-2`,
+		bottomRight: `top-12 right-0 pt-2`,
+		default: ``,
+	},
 	rounded: {
 		sm: `rounded-sm`,
 		md: `rounded-md`,
@@ -75,6 +84,7 @@ export interface VariantOptions {
 	fontStyle?: keyof typeof variants.fontStyle;
 	background?: keyof typeof variants.background;
 	border?: keyof typeof variants.border;
+	position?: keyof typeof variants.position;
 	rounded?: keyof typeof variants.rounded;
 	padding?: keyof typeof variants.padding;
 	justify?: keyof typeof variants.justify;
@@ -86,6 +96,7 @@ export const getVariantClasses = (variantOptions: VariantOptions): string => {
 		variants.fontSize[variantOptions.fontSize || "default"],
 		variants.fontStyle[variantOptions.fontStyle || "default"],
 		variants.background[variantOptions.background || "default"],
+		variants.position[variantOptions.position || "default"],
 		variants.border[variantOptions.border || "default"],
 		variants.rounded[variantOptions.rounded || "default"],
 		variants.padding[variantOptions.padding || "default"],
