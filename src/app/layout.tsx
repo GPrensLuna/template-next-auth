@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import Nav from "@/modules/app/UI/components/nav/nav.component";
 import ContainerCustom from "@/modules/app/UI/components/tags/container-custom.component";
+import { ThemeProvider } from "@/modules/app/UI/provider/theme.provider";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -18,10 +19,12 @@ const RootLayout = ({
 	return (
 		<html suppressHydrationWarning lang="en">
 			<body>
-				<header>
-					<Nav />
-				</header>
-				<ContainerCustom>{children}</ContainerCustom>
+				<ThemeProvider>
+					<header>
+						<Nav />
+					</header>
+					<ContainerCustom>{children}</ContainerCustom>
+				</ThemeProvider>
 			</body>
 		</html>
 	);

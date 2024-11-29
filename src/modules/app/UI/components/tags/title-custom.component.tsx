@@ -7,7 +7,7 @@ import variants from "@/modules/app/UI/styles/variants.styles";
 interface Props {
 	children: ReactNode;
 	className?: string;
-	tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+	tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "p";
 	variants?: {
 		text?: keyof typeof variants.text;
 		fontSize?: keyof typeof variants.fontSize;
