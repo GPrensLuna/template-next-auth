@@ -13,10 +13,10 @@ export default {
 			colors: {
 				primaryCustom: "#FF6600",
 				secondaryCustom: "#F79950",
-				tertiaryCustom: "#0f172a",
+				tertiaryCustom: "f3f3f3",
 				primaryContrastCustom: "#fd7c20",
-				secondaryContrastCustom: "#0f172a",
-				tertiaryContrastCustom: "#D45300",
+				secondaryContrastCustom: "#D45300",
+				tertiaryContrastCustom: "#0f172a",
 				primary: {
 					DEFAULT: "hsl(var(--primary))",
 					foreground: "hsl(var(--primary-foreground))",
@@ -25,10 +25,6 @@ export default {
 					DEFAULT: "hsl(var(--secondary))",
 					foreground: "hsl(var(--secondary-foreground))",
 				},
-				tertiary: "#0f172a",
-				primaryContrast: "#fd7c20",
-				secondaryContrast: "#0f172a",
-				tertiaryContrast: "#D45300",
 				background: "hsl(var(--background))",
 				foreground: "hsl(var(--foreground))",
 				card: {

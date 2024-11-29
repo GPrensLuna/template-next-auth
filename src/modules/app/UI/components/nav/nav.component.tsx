@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 
 import Link from "next/link";
 
-import ButtonContainer from "../tags/button-menu-list/button-container.component";
-import MenuListItems from "../tags/button-menu-list/components/list-menu-items.component";
+import { ButtonToggle } from "../button";
+import { ButtonContainer, MenuListItems } from "../tags";
 
 const Nav = (): ReactNode => {
 	const options = [
@@ -26,15 +26,15 @@ const Nav = (): ReactNode => {
 	];
 
 	return (
-		<nav className="w-full">
-			<ul className="flex justify-around">
+		<nav className="flex h-16 w-full items-center px-10">
+			<ul className="flex w-[80%] justify-around">
 				<li>
 					<ButtonContainer>
 						{(isOpen) => (
-							<Link href="/">
-								Home
+							<div>
+								<Link href="/">Home</Link>
 								{isOpen && <MenuListItems options={options} />}
-							</Link>
+							</div>
 						)}
 					</ButtonContainer>
 				</li>
@@ -43,6 +43,9 @@ const Nav = (): ReactNode => {
 				</li>
 				<li>Contact</li>
 			</ul>
+			<section className="flex h-auto w-[20%] items-center justify-center">
+				<ButtonToggle />
+			</section>
 		</nav>
 	);
 };

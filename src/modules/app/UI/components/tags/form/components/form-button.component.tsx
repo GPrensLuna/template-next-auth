@@ -1,10 +1,11 @@
 "use client";
+import type { VariantOptions } from "@/modules/app/UI/styles/variants.styles";
 import type { FC, MouseEvent, ReactNode } from "react";
 
 import classNames from "classnames";
-import { memo, useCallback } from "react";
+import { useCallback } from "react";
 
-import variants from "@/modules/app/UI/styles/variants.styles";
+import { getVariantClasses } from "@/modules/app/UI/styles/variants.styles";
 
 interface Props {
 	label: string;
@@ -14,18 +15,10 @@ interface Props {
 	children?: ReactNode;
 	disabled?: boolean;
 	loading?: boolean;
-	variants?: {
-		text?: keyof typeof variants.text;
-		fontSize?: keyof typeof variants.fontSize;
-		background?: keyof typeof variants.background;
-		border?: keyof typeof variants.border;
-		rounded?: keyof typeof variants.rounded;
-		padding?: keyof typeof variants.padding;
-		justify?: keyof typeof variants.justify;
-	};
+	variants?: VariantOptions;
 }
 
-const FormButton: FC<Props> = ({
+export const FormButton: FC<Props> = ({
 	label,
 	className,
 	onClick,
@@ -38,7 +31,7 @@ const FormButton: FC<Props> = ({
 	const isBusy = loading;
 
 	const handleClick = useCallback(
-		(event: MouseEvent<HTMLButtonElement>) => {
+		(event: MouseEvent<HTMLButtonElement>): void => {
 			if (onClick) {
 				onClick(event);
 			}
@@ -49,17 +42,7 @@ const FormButton: FC<Props> = ({
 	return (
 		<button
 			aria-busy={isBusy}
-			className={classNames(
-				className,
-				variants.text[variantOptions.text || "default"],
-				variants.fontSize[variantOptions.fontSize || "default"],
-				variants.background[variantOptions.background || "default"],
-				variants.border[variantOptions.border || "default"],
-				variants.rounded[variantOptions.rounded || "default"],
-				variants.padding[variantOptions.padding || "default"],
-				variants.justify[variantOptions.justify || "default"],
-				{ "is-loading": isBusy },
-			)}
+			className={classNames(className, getVariantClasses(variantOptions), { "is-loading": isBusy })}
 			disabled={disabled || isBusy}
 			type={type === "submit" ? "submit" : "button"}
 			onClick={handleClick}
@@ -69,5 +52,3 @@ const FormButton: FC<Props> = ({
 		</button>
 	);
 };
-
-export default memo(FormButton);

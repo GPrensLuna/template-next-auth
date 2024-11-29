@@ -4,7 +4,8 @@ import type { Control, FieldValues, Path } from "react-hook-form";
 import classNames from "classnames";
 import { Controller } from "react-hook-form";
 
-import variants from "@/modules/app/UI/styles/variants.styles";
+import { getVariantClasses, type VariantOptions } from "@/modules/app/UI/styles/variants.styles";
+
 interface Props<T extends FieldValues> {
 	name: Path<T>;
 	label: string;
@@ -14,27 +15,11 @@ interface Props<T extends FieldValues> {
 	classNameLabel?: string;
 	classNameInput?: string;
 	control: Control<T>;
-	variantsLabel?: {
-		text?: keyof typeof variants.text;
-		fontSize?: keyof typeof variants.fontSize;
-		background?: keyof typeof variants.background;
-		border?: keyof typeof variants.border;
-		rounded?: keyof typeof variants.rounded;
-		padding?: keyof typeof variants.padding;
-		justify?: keyof typeof variants.justify;
-	};
-	variantsInput?: {
-		text?: keyof typeof variants.text;
-		fontSize?: keyof typeof variants.fontSize;
-		background?: keyof typeof variants.background;
-		border?: keyof typeof variants.border;
-		rounded?: keyof typeof variants.rounded;
-		padding?: keyof typeof variants.padding;
-		justify?: keyof typeof variants.justify;
-	};
+	variantsLabel?: VariantOptions;
+	variantsInput?: VariantOptions;
 }
 
-const InputForm = <T extends FieldValues>({
+export const FormInput = <T extends FieldValues>({
 	name,
 	type = "text",
 	placeholder = "",
@@ -54,13 +39,7 @@ const InputForm = <T extends FieldValues>({
 				className={classNames(
 					"mb-2 flex h-6 w-full items-center transition-all duration-300 ease-in-out",
 					classNameLabel,
-					variants.text[variantOptionsLabel.text || "default"],
-					variants.fontSize[variantOptionsLabel.fontSize || "default"],
-					variants.background[variantOptionsLabel.background || "default"],
-					variants.border[variantOptionsLabel.border || "default"],
-					variants.rounded[variantOptionsLabel.rounded || "default"],
-					variants.padding[variantOptionsLabel.padding || "default"],
-					variants.justify[variantOptionsLabel.justify || "start"],
+					getVariantClasses(variantOptionsLabel),
 				)}
 				htmlFor={name}
 			>
@@ -77,12 +56,7 @@ const InputForm = <T extends FieldValues>({
 							className={classNames(
 								"h-14 w-full transition-all duration-300 ease-in-out",
 								classNameInput,
-								variants.fontSize[variantOptionsInput.fontSize || "default"],
-								variants.background[variantOptionsInput.background || "default"],
-								variants.border[variantOptionsInput.border || "default"],
-								variants.rounded[variantOptionsInput.rounded || "default"],
-								variants.padding[variantOptionsInput.padding || "default"],
-								variants.justify[variantOptionsInput.justify || "start"],
+								getVariantClasses(variantOptionsInput),
 							)}
 							id={name as string}
 							name={name as string}
@@ -99,5 +73,3 @@ const InputForm = <T extends FieldValues>({
 		</article>
 	);
 };
-
-export default InputForm;

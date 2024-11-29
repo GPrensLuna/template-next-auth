@@ -7,10 +7,7 @@ import { memo, useState } from "react";
 
 import { SignInData, SignInInitValue, signInSchema } from "../../domain/validations/sign-in.zod";
 
-import FormButton from "@/modules/app/UI/components/tags/form/components/form-button.component";
-import FormInput from "@/modules/app/UI/components/tags/form/components/form-input.component";
-import FormCustom from "@/modules/app/UI/components/tags/form/form-custom.component";
-import TitleCustom from "@/modules/app/UI/components/tags/title-custom.component";
+import { FormButton, FormCustom, FormInput, TitleCustom } from "@/modules/app/UI/components/tags";
 
 const SignIn = (): ReactNode => {
 	const [responseMessage, setResponseMessage] = useState<string | null>(null);
@@ -27,7 +24,7 @@ const SignIn = (): ReactNode => {
 
 	return (
 		<FormCustom<SignInType>
-			className="mx-auto grid w-full min-w-80 max-w-lg grid-cols-1 gap-2 bg-[#F79950] p-4 transition-all duration-300 ease-in-out"
+			className="mx-auto grid w-full min-w-80 max-w-lg grid-cols-1 gap-2 bg-[#] p-4 transition-all duration-300 ease-in-out"
 			defaultValues={SignInInitValue}
 			mode="onBlur"
 			schema={signInSchema}
@@ -46,10 +43,10 @@ const SignIn = (): ReactNode => {
 						className="w-full text-center uppercase transition-all duration-300 ease-in-out"
 						tag="h1"
 						variants={{
-							text: "primary",
 							rounded: "xl",
 							padding: "sm",
 							fontSize: "xl",
+							fontStyle: "bold",
 							justify: "center",
 						}}
 					>
@@ -73,8 +70,8 @@ const SignIn = (): ReactNode => {
 								justify: "center",
 							}}
 							variantsLabel={{
-								text: "primary",
 								fontSize: "lg",
+								fontStyle: "bold",
 							}}
 						/>
 					))}
@@ -84,10 +81,10 @@ const SignIn = (): ReactNode => {
 						label="send"
 						type="submit"
 						variants={{
-							text: "primary",
 							rounded: "xl",
 							border: "primary",
 							padding: "sm",
+							fontStyle: "bold",
 							justify: "center",
 						}}
 					/>

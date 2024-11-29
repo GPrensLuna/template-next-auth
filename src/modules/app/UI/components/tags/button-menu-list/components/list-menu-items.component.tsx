@@ -5,15 +5,15 @@ import classNames from "classnames";
 import Link from "next/link";
 import { memo } from "react";
 
-import ArticleVariants from "../../article-variants.component";
-import TitleCustom from "../../title-custom.component";
+import { ArticleVariants } from "../../article-variants.component";
+import { TitleCustom } from "../../title-custom.component";
 
 interface Props {
 	options: {
 		id: string;
 		label: string;
 		href?: string;
-		onClick?: MouseEventHandler<HTMLAnchorElement>;
+		onClick?: MouseEventHandler<HTMLAnchorElement> | (() => void);
 	}[];
 	className?: string | undefined;
 }
@@ -23,31 +23,33 @@ const MenuListItem: FC<{
 		id: string;
 		label: string;
 		href?: string;
-		onClick?: MouseEventHandler<HTMLAnchorElement>;
+		onClick?: MouseEventHandler<HTMLAnchorElement> | (() => void);
 	};
-}> = memo(({ subNav }) => (
-	<TitleCustom
-		key={subNav.id}
-		className="block h-full w-full rounded-md hover:bg-gray-300 dark:hover:text-black"
-		tag="span"
-	>
-		<Link
-			aria-controls="menu-items"
-			aria-expanded="false"
-			aria-haspopup="false"
-			className="block h-full w-full rounded-md px-4 py-2"
-			href={subNav.href || "#"}
-			role="menuitem"
-			onClick={subNav.onClick || ((): void => {})}
+}> = memo(
+	({ subNav }): ReactNode => (
+		<TitleCustom
+			key={subNav.id}
+			className="block h-full w-full rounded-md hover:bg-gray-300 dark:hover:text-black"
+			tag="span"
 		>
-			{subNav.label}
-		</Link>
-	</TitleCustom>
-));
+			<Link
+				aria-controls="menu-items"
+				aria-expanded="false"
+				aria-haspopup="false"
+				className="block h-full w-full rounded-md px-4 py-2"
+				href={subNav.href || "#"}
+				role="menuitem"
+				onClick={subNav.onClick || ((): void => {})}
+			>
+				{subNav.label}
+			</Link>
+		</TitleCustom>
+	),
+);
 
 MenuListItem.displayName = "MenuListItem";
 
-const MenuListItems: FC<Props> = ({ options, className }): ReactNode => (
+export const MenuListItems: FC<Props> = ({ options, className }): ReactNode => (
 	<ArticleVariants
 		className={classNames(
 			className,
@@ -62,5 +64,3 @@ const MenuListItems: FC<Props> = ({ options, className }): ReactNode => (
 			))}
 	</ArticleVariants>
 );
-
-export default memo(MenuListItems);

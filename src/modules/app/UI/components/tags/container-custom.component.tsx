@@ -6,7 +6,8 @@ interface Props {
 	children: ReactNode;
 	className?: string;
 }
-const ContainerCustom: FC<Props> = ({ children, className }) => {
+
+export const ContainerCustom: FC<Props> = ({ children, className }) => {
 	return (
 		<div
 			className={classNames(
@@ -18,5 +19,3 @@ const ContainerCustom: FC<Props> = ({ children, className }) => {
 		</div>
 	);
 };
-
-export default ContainerCustom;

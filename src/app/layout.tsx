@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import Nav from "@/modules/app/UI/components/nav/nav.component";
-import ContainerCustom from "@/modules/app/UI/components/tags/container-custom.component";
+import { ContainerCustom } from "@/modules/app/UI/components/tags";
 import { ThemeProvider } from "@/modules/app/UI/provider/theme.provider";
 
 export const metadata: Metadata = {
@@ -19,7 +19,12 @@ const RootLayout = ({
 	return (
 		<html suppressHydrationWarning lang="en">
 			<body>
-				<ThemeProvider>
+				<ThemeProvider
+					disableTransitionOnChange
+					enableSystem
+					attribute="class"
+					defaultTheme="system"
+				>
 					<header>
 						<Nav />
 					</header>

@@ -8,7 +8,7 @@ interface Props {
 	className?: string;
 }
 
-const ButtonContainer: FC<Props> = ({ children, className }) => {
+export const ButtonContainer: FC<Props> = ({ children, className }) => {
 	const { isOpen, handleClick, handleMouseEnter, handleMouseLeave } = useMenuHandlers();
 
 	return (
@@ -23,5 +23,3 @@ const ButtonContainer: FC<Props> = ({ children, className }) => {
 		</div>
 	);
 };
-
-export default ButtonContainer;

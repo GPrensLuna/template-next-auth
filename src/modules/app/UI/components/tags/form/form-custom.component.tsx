@@ -1,5 +1,6 @@
 "use client";
 
+import type { VariantOptions } from "@/modules/app/UI/styles/variants.styles";
 import type { ReactNode } from "react";
 import type { DefaultValues, FieldValues, SubmitHandler } from "react-hook-form";
 import type { z } from "zod";
@@ -8,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import classNames from "classnames";
 import { FormProvider, useForm } from "react-hook-form";
 
-import variants from "@/modules/app/UI/styles/variants.styles";
+import { getVariantClasses } from "@/modules/app/UI/styles/variants.styles";
 
 interface Props<T extends FieldValues> {
 	children: (methods: ReturnType<typeof useForm<T>>) => ReactNode;
@@ -17,18 +18,10 @@ interface Props<T extends FieldValues> {
 	mode: "onBlur" | "onChange" | "onSubmit" | "all" | "onTouched";
 	onSubmit: SubmitHandler<T>;
 	className?: string;
-	variants?: {
-		text?: keyof typeof variants.text;
-		fontSize?: keyof typeof variants.fontSize;
-		background?: keyof typeof variants.background;
-		border?: keyof typeof variants.border;
-		rounded?: keyof typeof variants.rounded;
-		padding?: keyof typeof variants.padding;
-		justify?: keyof typeof variants.justify;
-	};
+	variants?: VariantOptions;
 }
 
-const FormCustom = <T extends FieldValues>({
+export const FormCustom = <T extends FieldValues>({
 	children,
 	defaultValues,
 	schema,
@@ -46,16 +39,7 @@ const FormCustom = <T extends FieldValues>({
 	return (
 		<FormProvider {...methods}>
 			<form
-				className={classNames(
-					className,
-					variants.text[variantOptions.text || "default"],
-					variants.fontSize[variantOptions.fontSize || "default"],
-					variants.background[variantOptions.background || "default"],
-					variants.border[variantOptions.border || "default"],
-					variants.rounded[variantOptions.rounded || "default"],
-					variants.padding[variantOptions.padding || "default"],
-					variants.justify[variantOptions.justify || "start"],
-				)}
+				className={classNames(className, getVariantClasses(variantOptions))}
 				onSubmit={methods.handleSubmit(onSubmit)}
 			>
 				{children(methods)}
@@ -63,5 +47,3 @@ const FormCustom = <T extends FieldValues>({
 		</FormProvider>
 	);
 };
-
-export default FormCustom;
