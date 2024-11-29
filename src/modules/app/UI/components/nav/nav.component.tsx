@@ -18,11 +18,6 @@ const Nav = (): ReactNode => {
 			label: "Auth",
 			href: "/auth",
 		},
-		{
-			id: "contact",
-			label: "Contact",
-			href: "/contact",
-		},
 	];
 
 	return (
