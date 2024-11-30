@@ -6,4 +6,9 @@ import authConfig from "./auth.config";
 export const { handlers, signIn, signOut, auth }: any = NextAuth({
 	session: { strategy: "jwt" },
 	...authConfig,
+	callbacks: {
+		authorized: async ({ auth }) => {
+			return !!auth;
+		},
+	},
 });

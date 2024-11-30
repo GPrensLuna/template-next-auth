@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import type { SignInType } from "../../domain/validations/sign-in.zod";
 
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { memo, useTransition } from "react";
 
 import { SignInData, SignInInitValue, signInSchema } from "../../domain/validations/sign-in.zod";
@@ -12,17 +13,22 @@ import { Alert } from "@/modules/app/UI/components/modals";
 import { FormButton, FormCustom, FormInput, TitleCustom } from "@/modules/app/UI/components/tags";
 
 const SignIn = (): ReactNode => {
+	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
 
 	const onSubmit = async (data: SignInType): Promise<void> => {
 		startTransition(async () => {
 			try {
-				await signIn("credentials", {
+				const result = await signIn("credentials", {
 					email: data.email,
 					password: data.password,
-					callbackUrl: "/",
+					redirect: false,
 				});
 
+				if (result?.error) {
+					throw new Error(result.error);
+				}
+				router.push("/");
 				await Alert.success("Inicio de sesión exitoso");
 			} catch {
 				await Alert.error("Error al iniciar sesión");
