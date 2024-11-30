@@ -4,10 +4,11 @@ import type { ReactNode } from "react";
 
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
 
 import { ButtonContainer, MenuListItems } from "../tags";
 
-export const ButtonToggle = (): ReactNode => {
+const ButtonToggleComponent = (): ReactNode => {
 	const { theme, setTheme } = useTheme();
 
 	const options = [
@@ -41,3 +42,9 @@ export const ButtonToggle = (): ReactNode => {
 		</ButtonContainer>
 	);
 };
+
+export default ButtonToggleComponent;
+
+export const ButtonToggle = dynamic(() => import("./button-toggle.component"), {
+	ssr: false,
+});

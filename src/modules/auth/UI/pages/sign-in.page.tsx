@@ -3,23 +3,32 @@
 import type { ReactNode } from "react";
 import type { SignInType } from "../../domain/validations/sign-in.zod";
 
-import { memo, useState } from "react";
+import { signIn } from "next-auth/react";
+import { memo, useTransition } from "react";
 
 import { SignInData, SignInInitValue, signInSchema } from "../../domain/validations/sign-in.zod";
 
+import { Alert } from "@/modules/app/UI/components/modals";
 import { FormButton, FormCustom, FormInput, TitleCustom } from "@/modules/app/UI/components/tags";
 
 const SignIn = (): ReactNode => {
-	const [responseMessage, setResponseMessage] = useState<string | null>(null);
+	const [isPending, startTransition] = useTransition();
 
 	const onSubmit = async (data: SignInType): Promise<void> => {
-		try {
-			console.log(data);
-			await new Promise((resolve) => setTimeout(resolve, 1000));
-			setResponseMessage("Inicio de sesión exitoso");
-		} catch {
-			setResponseMessage("Error al iniciar sesión");
-		}
+		startTransition(async () => {
+			try {
+				await signIn("credentials", {
+					email: data.email,
+					password: data.password,
+					callbackUrl: "/",
+				});
+
+				await Alert.success("Inicio de sesión exitoso");
+			} catch {
+				await Alert.error("Error al iniciar sesión");
+			} finally {
+			}
+		});
 	};
 
 	return (
@@ -78,7 +87,8 @@ const SignIn = (): ReactNode => {
 
 					<FormButton
 						className="mt-4 w-full bg-slate-900 uppercase transition-all duration-300 ease-in-out"
-						label="send"
+						disabled={isPending}
+						label={isPending ? "Loading..." : "Send"}
 						type="submit"
 						variants={{
 							rounded: "xl",
@@ -88,12 +98,6 @@ const SignIn = (): ReactNode => {
 							justify: "center",
 						}}
 					/>
-
-					{responseMessage && (
-						<p className="mt-4 text-center transition-all duration-300 ease-in-out">
-							{responseMessage}
-						</p>
-					)}
 				</>
 			)}
 		</FormCustom>
